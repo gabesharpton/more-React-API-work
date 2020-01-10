@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Grid } from 'semantic-ui-react'
 // import { css } from 'glamor';
 
 
 export default function Characters({ data }) {
 
-    // const [people, setPeople] = useState([]);
-    // const rules = css({
-    //     fontSize: 1
-    //   });
+    const [people, setCharacters] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+
+    async function fetchChar() {
+        let res = await fetch("https://rickandmortyapi.com/api/character/page=2")
+        let data = await res.json();
+        setCharacters(data.results);
+        setLoading(false);
+        console.log(data)}
+        fetchChar();
+    }, [])
+    
 
     return(
         <div>
@@ -25,8 +35,7 @@ export default function Characters({ data }) {
                                     <p>{characters.origin.name}</p>
                                     <strong>Location</strong>
                                     <p>{characters.location.name}</p>
-                                    <strong>Hair Color</strong>
-                                    <p>{characters.hair_color}</p>
+                                    <strong>Image</strong>
                                     <img src={characters.image} style={{height: 150}}></img>
                                 </Card.Description>
                             </Card.Content>
@@ -35,6 +44,8 @@ export default function Characters({ data }) {
                 )
             })}
         </Grid>
+        
+}
         
         </div>
     )
