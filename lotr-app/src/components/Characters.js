@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Grid } from 'semantic-ui-react'
 // import { css } from 'glamor';
 
@@ -36,6 +36,7 @@ export default function Characters({ data }) {
                                     <strong>Location</strong>
                                     <p>{characters.location.name}</p>
                                     <strong>Image</strong>
+                                    <p></p>
                                     <img src={characters.image} style={{height: 150}}></img>
                                 </Card.Description>
                             </Card.Content>
@@ -45,8 +46,8 @@ export default function Characters({ data }) {
             })}
         </Grid>
         
-}
+
         
         </div>
     )
-        }
+}
