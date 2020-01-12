@@ -15,29 +15,29 @@ function App() {
       let res = await fetch("https://rickandmortyapi.com/api/character/");
       let data = await res.json();
       setCharacters(data.results);
-      setLoading(false);
+      setLoading(false);}
       // console.log(data)
 
-      console.log(data.info.pages);
-      var pages = data.info.pages;
-      const restOfThepages = await Promise.all(
-        Array(data.info.pages)
-        .fill(0)
-        .map(i =>
-            fetch(`https://rickandmortyapi.com/api/character/?page=${i+2}/info/pages`)
-              .then(res => res.json())
-              .then(d => d.results)
-          )
-      );
-      console.log(restOfThepages);
+    //   console.log(data.info.pages);
+    //   var pages = data.info.pages;
+    //   const restOfThepages = await Promise.all(
+    //     Array(data.info.pages)
+    //     .fill(0)
+    //     .map(i =>
+    //         fetch(`https://rickandmortyapi.com/api/character/?page=${i+2}/info/pages`)
+    //           .then(res => res.json())
+    //           .then(d => d.results)
+    //       )
+    //   );
+    //   console.log(restOfThepages);
 
-      const flattenedData = restOfThepages.reduce(
-        (acc, d) => [...acc, ...d],
-        []
-      );
-      return [...data.results, ...flattenedData];
-      setCharacters(restOfThepages);
-    }
+    //   const flattenedData = restOfThepages.reduce(
+    //     (acc, d) => [...acc, ...d],
+    //     []
+    //   );
+    //   return [...data.results, ...flattenedData];
+    //   setCharacters(restOfThepages);
+    // }
     fetchChar();
   }, []);
 
