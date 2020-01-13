@@ -13,9 +13,10 @@ export default function Navbar() {
                 <Link to='/characters'>
                 <Menu.Item name="Characters" />
                 </Link>
-                {/* <Link to='/planets'>
-                <Menu.Item name="Planets" />
+                <Link to='/location'>
+                <Menu.Item name="Location" />
                 </Link>
+                {/* 
                 <Link to='/films'>
                 <Menu.Item name="Films" />
                 </Link>

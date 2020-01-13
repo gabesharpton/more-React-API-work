@@ -3,11 +3,13 @@ import "./App.css";
 import { Container, Dimmer, Loader } from "semantic-ui-react";
 import Navbar from "./components/Navbar";
 import Characters from "./components/Characters";
+import Location from "./components/Location";
 
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [location, setLocation] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,6 +18,12 @@ function App() {
       let data = await res.json();
       setCharacters(data.results);
       setLoading(false);}
+
+      async function fetchLoca() {
+        let res = await fetch("https://rickandmortyapi.com/api/location/");
+        let data = await res.json();
+        setLocation(data.results);
+        setLoading(false);}
       // console.log(data)
 
     //   console.log(data.info.pages);
@@ -39,6 +47,7 @@ function App() {
     //   setCharacters(restOfThepages);
     // }
     fetchChar();
+    fetchLoca();
   }, []);
 
   return (
@@ -58,9 +67,9 @@ function App() {
               <Router exact path="/characters">
                 <Characters data={characters} />
               </Router>
-              {/* <Router exact path="/planets">
-      <Planets data={planets}/>
-    </Router>
+              <Router exact path="/location">
+      <Location data={location}/>
+    </Router>{/*
     <Router exact path="/films">
       <Films data={films}/>
     </Router>
